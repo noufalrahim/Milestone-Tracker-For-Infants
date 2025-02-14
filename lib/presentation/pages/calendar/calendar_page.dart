@@ -11,7 +11,7 @@ class CalendarPage extends StatelessWidget {
         title: const Text('Calendar'),
         automaticallyImplyLeading: false
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: TimelineWidget(),
       ),

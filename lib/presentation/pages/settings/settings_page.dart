@@ -1,64 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:milestone_tracker_for_infants/presentation/widgets/cards/primary_card.dart';
 
 class SettingsPage extends StatelessWidget {
   final Function(Locale) changeLocale;
 
-  const SettingsPage({Key? key, required this.changeLocale}) : super(key: key);
+  const SettingsPage({super.key, required this.changeLocale});
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> settingsData = [
+    final List<Map<String, dynamic>> settingsData1 = [
       {
-        'leadingIcon': Icons.notification_add,
+        'icon': Icons.notification_add,
         'title': 'Notification',
         'onTap': () {
           // Add functionality for Notification
         },
       },
       {
-        'leadingIcon': Icons.language,
+        'icon': Icons.language,
         'title': 'Language',
         'onTap': () {
           // Add functionality for Language change
         },
       },
       {
-        'leadingIcon': Icons.star,
+        'icon': Icons.star,
         'title': 'Rate App',
         'onTap': () {
           // Add functionality for Rate App
         },
       },
       {
-        'leadingIcon': Icons.share,
+        'icon': Icons.share,
         'title': 'Share App',
         'onTap': () {
           // Add functionality for Share App
         },
-      },
+      }
+    ];
+
+    final List<Map<String, dynamic>> settingsData2 = [
       {
-        'leadingIcon': Icons.privacy_tip,
+        'icon': Icons.privacy_tip,
         'title': 'Privacy Policy',
         'onTap': () {
           // Add functionality for Privacy Policy
         },
       },
       {
-        'leadingIcon': Icons.file_copy,
+        'icon': Icons.file_copy,
         'title': 'Terms & Conditions',
         'onTap': () {
           // Add functionality for Terms & Conditions
         },
       },
+    ];
+
+    final List<Map<String, dynamic>> settingsData3 = [
       {
-        'leadingIcon': Icons.mail,
+        'icon': Icons.mail,
         'title': 'Contact Us',
         'onTap': () {
           // Add functionality for Contact Us
         },
       },
       {
-        'leadingIcon': Icons.delete,
+        'icon': Icons.delete,
         'title': 'Delete Account',
         'onTap': () {
           // Add functionality for Delete Account
@@ -73,26 +80,44 @@ class SettingsPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
-        child: ListView.builder(
-          itemCount: settingsData.length,
-          itemBuilder: (context, index) {
-            final item = settingsData[index];
-            return Column(
-              children: [
-                ListTile(
-                  leading: Icon(
-                    item['leadingIcon'],
-                    color: Colors.grey,
-                  ),
-                  title: Text(
-                    item['title'],
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
-                  onTap: item['onTap'],
-                ),
-              ],
-            );
-          },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              PrimaryCard(
+                items: settingsData1
+                    .map((item) => Item(
+                          icon: item['icon'],
+                          title: item['title'],
+                          onTap: item['onTap'],
+                        ))
+                    .toList(),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              PrimaryCard(
+                items: settingsData2
+                    .map((item) => Item(
+                          icon: item['icon'],
+                          title: item['title'],
+                          onTap: item['onTap'],
+                        ))
+                    .toList(),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              PrimaryCard(
+                items: settingsData3
+                    .map((item) => Item(
+                          icon: item['icon'],
+                          title: item['title'],
+                          onTap: item['onTap'],
+                        ))
+                    .toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );

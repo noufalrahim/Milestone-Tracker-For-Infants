@@ -1,66 +1,129 @@
 import 'package:flutter/material.dart';
+import 'package:milestone_tracker_for_infants/presentation/widgets/cards/primary_card.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer ({super.key});
+  const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    
     return Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: const Color(0xFF80DEEA),
-              ),
-              child: Center(
-                child: Column(
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 37.5,
+                        backgroundColor: Colors.blueGrey,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Noufal Rahim',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        '2 Months',
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.normal),
+                      ),
+                    ],
+                  ),
+                ),
+                Column(
                   children: [
                     Container(
-                      width: 100,
-                      height: 100,
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100)
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: PrimaryCard(
+                        items: [
+                          Item(
+                              icon: Icons.account_circle,
+                              title: 'Switch Account',
+                              onTap: () => print('Profile tapped')),
+                          Item(
+                              icon: Icons.add,
+                              title: 'Add Account',
+                              onTap: () => print('Add Account tapped')),
+                          Item(
+                              icon: Icons.edit,
+                              title: 'Edit Profile',
+                              onTap: () => print('Edit Profile tapped')),
+                        ],
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text(
-                      'Noufal Rahim',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal
-                      ),
-                    )
+                    PrimaryCard(
+                      items: [
+                        Item(
+                            icon: Icons.account_circle,
+                            title: 'Liam Doe',
+                            onTap: () => print('Liam Doe')),
+                        Item(
+                            icon: Icons.account_circle,
+                            title: 'Olivia Jones',
+                            onTap: () => print('Olivia Jones tapped')),
+                      ],
+                    ),
                   ],
                 ),
-              )
+              ],
             ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
-              onTap: () {
-                // Handle navigation or actions
-                Navigator.pop(context); // Close the drawer
-              },
+          ),
+          // Footer Section
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
             ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.pop(context); // Close the drawer
-              },
+            child: Column(
+              children: [
+                ListTile(
+                  leading: const Icon(
+                    Icons.settings,
+                    size: 20,
+                  ),
+                  title: const Text(
+                    'Settings',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.logout,
+                    size: 20,
+                  ),
+                  title: const Text(
+                    'Logout',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ),
-            ListTile(
-              leading: const Icon(Icons.exit_to_app),
-              title: const Text('Logout'),
-              onTap: () {
-                Navigator.pop(context); // Close the drawer
-              },
-            ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
   }
 }

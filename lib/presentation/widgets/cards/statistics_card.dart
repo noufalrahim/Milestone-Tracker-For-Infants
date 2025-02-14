@@ -15,7 +15,7 @@ class StatisticsCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10), // Rounded corners for the elevation effect
         child: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(10),
           ),
           height: 150,

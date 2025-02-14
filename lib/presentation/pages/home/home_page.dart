@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:milestone_tracker_for_infants/presentation/providers/app_drawer_state.dart';
 import 'package:milestone_tracker_for_infants/presentation/widgets/cards/progress_card.dart';
 import 'package:milestone_tracker_for_infants/presentation/widgets/drawer/app_drawer.dart';
 import 'package:milestone_tracker_for_infants/presentation/widgets/grid/grid.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   final Function(Locale) changeLocale;
 
-  HomePage({Key? key, required this.changeLocale}) : super(key: key);
+  HomePage({super.key, required this.changeLocale});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 // ElevatedButton(
@@ -18,7 +20,7 @@ class HomePage extends StatelessWidget {
           //   child: const Text('Switch to Malayalam'),
           // ),
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final List<Map<String, dynamic>> gridData = [
       {
         'color': Color(0xFFB3E5FC),
@@ -55,7 +57,7 @@ class HomePage extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-          _scaffoldKey.currentState?.openDrawer();
+            ref.read(appStateProvider.notifier).openDrawer();
         }, 
         icon: const Icon(Icons.menu)),
       ),
