@@ -34,6 +34,10 @@ class PrimaryTextField extends StatelessWidget {
             controller: controller,
             decoration: InputDecoration(
               hintText: hintText,
+              hintStyle: TextStyle(
+                color: Theme.of(context).textTheme.bodyMedium?.color,
+                fontSize: 13
+              ),
               filled: true,
               fillColor: Colors.transparent, // Ensure container color is used
               border: InputBorder.none, // No border

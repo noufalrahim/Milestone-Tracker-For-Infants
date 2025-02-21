@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color primaryColor = Color(0xFFFFB6C1);
+  static const Color primaryColor = Color(0xFFFFCAD2);
   static const Color secondaryColor = Color(0xFF62CDFA);
   static const Color textGray = Color(0xFF766565);
   static const Color tertiaryColor = Color(0xFFFFDF86);
@@ -11,7 +11,6 @@ class AppTheme {
     return ThemeData(
       primaryColor: primaryColor,
       cardColor: tertiaryColor,
-      
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: primaryColor,
         secondary: secondaryColor,

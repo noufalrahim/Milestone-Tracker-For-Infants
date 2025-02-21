@@ -14,7 +14,9 @@ class SetupPage extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.go('/welcome');
+          },
           icon: const Icon(
             Icons.chevron_left,
             color: Colors.white,
@@ -90,8 +92,8 @@ class SetupPage extends StatelessWidget {
                         Column(
                           children: [
                             PrimaryTextField(
-                                label: "Mobile Number",
-                                hintText: "Enter your phone number"),
+                                label: "",
+                                hintText: "Enter Your Mobile Number"),
                             SizedBox(
                               height: 10,
                             ),

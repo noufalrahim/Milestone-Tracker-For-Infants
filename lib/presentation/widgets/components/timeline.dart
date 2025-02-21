@@ -6,71 +6,103 @@ class TimelineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Define the list of colors to cycle through
     final List<Color> colors = [
       const Color(0xFFF8BBD0),
       const Color(0xFFAED581),
       const Color(0xFF80DEEA),
     ];
 
-    return Container(
-      child: Timeline.builder(
-        context: context,
-        markerCount: 10,
-        properties: TimelineProperties(
-          iconAlignment: MarkerIconAlignment.center,
-          iconSize: 36,
-          timelinePosition: TimelinePosition.center,
-        ),
-        markerBuilder: (context, index) {
-          // Cycle through the colors based on the index
-          Color markerColor = colors[index % colors.length];
-
-          return Marker(
-            child: Padding(
-              padding: const EdgeInsets.all(3),
-              child: Container(
-                width: double.infinity,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: markerColor, // Set the background color
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: Text(
-                    'I started to walk!',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 15,
-                    ),
-                  ),
+    return Timeline.builder(
+      context: context,
+      markerCount: 10,
+      properties: TimelineProperties(
+        iconAlignment: MarkerIconAlignment.center,
+        iconSize: 48,
+        timelinePosition: TimelinePosition.center,
+        lineWidth: 6,
+        lineColor: Colors.grey,
+      ),
+      markerBuilder: (context, index) {
+        Color markerColor = Theme.of(context).primaryColor;
+        return Marker(
+          child: CustomPaint(
+            painter: MarkerContainerPainter(
+                color: markerColor, isLeft: index % 2 == 0),
+            child: Container(
+              width: 250,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              alignment: Alignment.center,
+              child: const Text(
+                'I started to walk!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 15,
                 ),
               ),
             ),
-            icon: Container(
-              width: 36, // Ensure a larger width to accommodate text
-              height: 36, // Match the width for a perfect circle
+          ),
+          icon: Material(
+            elevation: 4,
+            shape: const CircleBorder(),
+            child: Container(
+              width: 48,
+              height: 48,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.grey,
+                color: colors[index % colors.length],
               ),
               child: Center(
                 child: Text(
-                  '2\nFeb', // Add a line break for better fit
+                  '2\nFeb',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 10, // Smaller font to fit within the circle
+                    fontSize: 12,
                   ),
                 ),
               ),
             ),
-            position: index % 2 == 0 ? MarkerPosition.left : MarkerPosition.right,
-          );
-        },
-      ),
+          ),
+          position: index % 2 == 0 ? MarkerPosition.left : MarkerPosition.right,
+        );
+      },
     );
   }
+}
+
+class MarkerContainerPainter extends CustomPainter {
+  final Color color;
+  final bool isLeft;
+
+  MarkerContainerPainter({required this.color, required this.isLeft});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = color;
+
+    final path = Path();
+    if (isLeft) {
+      path.moveTo(0, size.height / 2);
+      path.lineTo(15, size.height / 2 - 10);
+      path.lineTo(15, size.height / 2 + 10);
+      path.close();
+    } else {
+      path.moveTo(size.width, size.height / 2);
+      path.lineTo(size.width - 15, size.height / 2 - 10);
+      path.lineTo(size.width - 15, size.height / 2 + 10);
+      path.close();
+    }
+
+    final rect = Rect.fromLTWH(
+        isLeft ? 15 : 0, 0, size.width - 15, size.height); // Adjusted rectangle
+    final rrect = RRect.fromRectAndRadius(rect, const Radius.circular(8));
+
+    canvas.drawRRect(rrect, paint);
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

@@ -12,7 +12,7 @@ import 'package:milestone_tracker_for_infants/presentation/widgets/scaffold/Bott
 class AppRouter {
   static GoRouter createRouter(Function(Locale) changeLocale) {
     return GoRouter(
-      initialLocation: '/welcome',
+      initialLocation: '/',
       routes: [
         GoRoute(
           path: '/',

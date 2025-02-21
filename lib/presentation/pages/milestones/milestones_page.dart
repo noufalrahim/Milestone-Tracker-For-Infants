@@ -44,8 +44,7 @@ class _MilestonePageState extends State<MilestonesPage> {
     final url = Uri.parse('http://172.20.10.4:3000/questions');
 
     try {
-      final response =
-          await http.get(url, headers: {'Accept': 'application/json'});
+      final response = await http.get(url, headers: {'Accept': 'application/json'});
       if (response.statusCode == 200) {
         final decodedString =
             Utf8Decoder().convert(response.bodyBytes); // Ensure UTF-8 decoding
@@ -84,14 +83,13 @@ class _MilestonePageState extends State<MilestonesPage> {
       ),
       body: Column(
         children: [
-          // Horizontal scrolling indicators
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: SizedBox(
-              height: 30.0, // Set a fixed height for the ListView
+              height: 30.0,
               child: ListView(
                 scrollDirection:
-                    Axis.horizontal, // Enables horizontal scrolling
+                    Axis.horizontal,
                 children: [
                   MilestonePageIndicator(
                       label: localizations.social, 
@@ -185,7 +183,7 @@ class _MilestonePageState extends State<MilestonesPage> {
                             // Ensures the icon is centered
                             child: Icon(
                               Icons.arrow_left,
-                              size: 30, // Adjust size if needed
+                              size: 30,
                             ),
                           ),
                         ),
