@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/home/noufalrahim/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/noufalrahim/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/noufalrahim/Desktop/Projects/AppDev/Flutter/Milestone-Tracker-For-Infants/android/app/.cxx/Debug/m5m2b1n6/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/noufalrahim/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/noufalrahim/Desktop/Projects/AppDev/Flutter/Milestone-Tracker-For-Infants/android/app/.cxx/Debug/m5m2b1n6/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
